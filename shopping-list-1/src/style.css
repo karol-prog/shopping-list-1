@@ -38,6 +38,7 @@ li {
 
 span {
   cursor: pointer;
+  margin-right: 1rem;
 }
 
 .container {

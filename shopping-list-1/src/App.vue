@@ -6,15 +6,15 @@
 
     <h2>Items to buy:</h2>
     <ul>
-      <li v-for="item in validItems" :key="`item-${item.id}`">
-        <span @click="deleteItem(item)" style="margin-right: 15px">X</span>
+      <li v-for="item in validItems" :key="item.id">
+        <span @click="deleteItem(item)">X</span>
         {{ item.text }}
       </li>
     </ul>
 
     <h2>Deleted Items:</h2>
     <ul>
-      <li v-for="item in deletedItems" :key="`item-${item.id}`">
+      <li v-for="item in deletedItems" :key="item.id">
         {{ item.text }}
       </li>
     </ul>
@@ -27,17 +27,17 @@ export default {
     return {
       //define the input and list array
       input: "",
-      list: [],
+      items: [],
     };
   },
 
   methods: {
-    //method for add item to li
+    //method for add item to list
     addItem() {
       //push the value to the array if the input have something in it
       if (this.input.length > 0) {
-        this.list.push({
-          id: this.list.length + 1,
+        this.items.push({
+          id: this.items.length + 1,
           text: this.input,
           is_deleted: false,
         });
@@ -55,11 +55,11 @@ export default {
   computed: {
     //filter method for filter the items in array if they have a false value in is_deleted
     validItems() {
-      return this.list.filter((item) => !item.is_deleted);
+      return this.items.filter((item) => !item.is_deleted);
     },
     //filter method for filter the items in array if they have a true (was deleted) value in is_deleted
     deletedItems() {
-      return this.list.filter((item) => item.is_deleted);
+      return this.items.filter((item) => item.is_deleted);
     },
   },
 };
